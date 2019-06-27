@@ -16,6 +16,22 @@ void initboard(int board[][BOARD_HEIGHT]) {
 		board[i][j] = rand() % 2;
 }
 
+// создание цикличности для индекса ширины
+int xadd(int i, int a) {
+	i += a;
+	while (i < 0) i += BOARD_WIDTH;
+	while (i >= BOARD_WIDTH) i -= BOARD_WIDTH;
+	return i;
+}
+
+// создание цикличности для индекса высоты
+int yadd(int i, int a) {
+	i += a;
+	while (i < 0) i += BOARD_HEIGHT;
+	while (i >= BOARD_HEIGHT) i -= BOARD_HEIGHT;
+	return i;
+}
+
 //выведение поля
 void print(int board[][BOARD_HEIGHT]) {
 	int	i, j;
