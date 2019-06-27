@@ -82,6 +82,22 @@ int ifnull(int nextgen[BOARD_WIDTH][BOARD_HEIGHT]){
 	return cnt;
 }
 
+//сравнение текущего и нового поколения на ниличие разницы
+int cmpr(int currgen[BOARD_WIDTH][BOARD_HEIGHT], int nextgen[BOARD_WIDTH][BOARD_HEIGHT]) {
+	int cnt = 0;
+	for (int i = 0; i < BOARD_WIDTH; i++) for (int j = 0; j < BOARD_HEIGHT; j++) {
+	if (currgen[i][j] != nextgen[i][j]) cnt += 1;
+	}
+	return cnt;
+
+}
+
+//замена полей
+void cpy(int currgen[BOARD_WIDTH][BOARD_HEIGHT], int nextgen[BOARD_WIDTH][BOARD_HEIGHT]) {
+	for (int i = 0; i < BOARD_WIDTH; i++) for (int j = 0; j < BOARD_HEIGHT; j++) {
+		currgen[i][j] = nextgen[i][j];
+	}
+}
 
 int main() {
 	int	currgen[BOARD_WIDTH][BOARD_HEIGHT], nextgen[BOARD_WIDTH][BOARD_HEIGHT], a;
@@ -94,8 +110,9 @@ int main() {
 		system("cls");
 		print(currgen);
 		turn(currgen, nextgen);
-        a = ifnull(nextgen)
+        a = cmpr(currgen, nextgen);
+		b = ifnull(nextgen);
 
-        } while (a != 0);//Добавить условия выхода из цикла
+        } while ((a != 0) && (b != 0));//Добавить условия выхода из цикла
 	
 }
