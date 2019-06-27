@@ -112,6 +112,7 @@ int main() {
 		turn(currgen, nextgen);
         a = cmpr(currgen, nextgen);
 		b = ifnull(nextgen);
+        cpy(currgen, nextgen);
 
         } while ((a != 0) && (b != 0));//Добавить условия выхода из цикла
 	
