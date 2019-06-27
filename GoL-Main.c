@@ -73,9 +73,18 @@ void turn(int currgen[BOARD_WIDTH][BOARD_HEIGHT], int nextgen[BOARD_WIDTH][BOARD
 	}
 }
 
+//проверка отсутствия жизни
+int ifnull(int nextgen[BOARD_WIDTH][BOARD_HEIGHT]){
+	int cnt = 0;
+	for (int i = 0; i < BOARD_WIDTH; i++) for (int j = 0; j < BOARD_HEIGHT; j++) {
+		if (nextgen[i][j] != 0) cnt += 1;
+	}
+	return cnt;
+}
+
 
 int main() {
-	int	currgen[BOARD_WIDTH][BOARD_HEIGHT], nextgen[BOARD_WIDTH][BOARD_HEIGHT];
+	int	currgen[BOARD_WIDTH][BOARD_HEIGHT], nextgen[BOARD_WIDTH][BOARD_HEIGHT], a;
 
 	initboard(currgen);
 
@@ -85,7 +94,8 @@ int main() {
 		system("cls");
 		print(currgen);
 		turn(currgen, nextgen);
+        a = ifnull(nextgen)
 
-        } while ();//Добавить условия выхода из цикла
+        } while (a != 0);//Добавить условия выхода из цикла
 	
 }
