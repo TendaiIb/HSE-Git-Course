@@ -29,6 +29,51 @@ void print(int board[][BOARD_HEIGHT]) {
 	}
 }
 
+
+//замена полей
+void cpy(int currgen[BOARD_WIDTH][BOARD_HEIGHT], int nextgen[BOARD_WIDTH][BOARD_HEIGHT]) {
+	for (int i = 0; i < BOARD_WIDTH; i++) for (int j = 0; j < BOARD_HEIGHT; j++) {
+		currgen[i][j] = nextgen[i][j];
+	}
+}
+
+//подсчет кол-ва живых соседей клетки (i,j) на данном массиве
+int nbrs(int board[][BOARD_HEIGHT], int i, int j) {
+	int	k, l, count;
+
+	count = 0;
+
+	//обход вокруг клетки
+
+	for (k = -1; k <= 1; k++) for (l = -1; l <= 1; l++)
+		if (k || l)
+			if (board[i + k][j+l]) count++;
+	return count;
+}
+
+//обработка первого поля по правилам игры и помещение результата во второй массив
+void turn(int currgen[BOARD_WIDTH][BOARD_HEIGHT], int nextgen[BOARD_WIDTH][BOARD_HEIGHT]) {
+
+	int	i, j, a;
+
+	//применяем правила для каждой клетки
+
+	for (i = 0; i < BOARD_WIDTH; i++) for (j = 0; j < BOARD_HEIGHT; j++) {
+		a = nbrs(currgen, i, j);
+		if (a == 2) nextgen[i][j] = currgen[i][j];
+		if (a == 3) nextgen[i][j] = 1;
+		if ((a < 2)||(a > 3)) nextgen[i][j] = 0;
+
+	}
+}
+	void swap(int currgen[BOARD_WIDTH][BOARD_HEIGHT], int nextgen[BOARD_WIDTH][BOARD_HEIGHT]) {
+		int	i, j;
+	for (i = 0; i < BOARD_WIDTH; i++) for (j = 0; j < BOARD_HEIGHT; j++) {
+		currgen[i][j] = nextgen[i][j];
+	}
+}
+
+
 int main() {
 	int	currgen[BOARD_WIDTH][BOARD_HEIGHT], nextgen[BOARD_WIDTH][BOARD_HEIGHT];
 
@@ -39,6 +84,8 @@ int main() {
 	do {
 		system("cls");
 		print(currgen);
-		
+		turn(currgen, nextgen);
+
+        } while ();//Добавить условия выхода из цикла
 	
 }
