@@ -16,6 +16,36 @@ void initboard(int board[][BOARD_HEIGHT]) {
 		board[i][j] = rand() % 2;
 }
 
+// создание цикличности для индекса ширины
+int xadd(int i, int a) {
+	i += a;
+	while (i < 0) i += BOARD_WIDTH;
+	while (i >= BOARD_WIDTH) i -= BOARD_WIDTH;
+	return i;
+}
+
+// создание цикличности для индекса высоты
+int yadd(int i, int a) {
+	i += a;
+	while (i < 0) i += BOARD_HEIGHT;
+	while (i >= BOARD_HEIGHT) i -= BOARD_HEIGHT;
+	return i;
+}
+
+//подсчет кол-ва живых соседей клетки (i,j) на данном массиве
+int nbrs(int board[][BOARD_HEIGHT], int i, int j) {
+	int	k, l, count;
+
+	count = 0;
+
+	//обход вокруг клетки
+
+	for (k = -1; k <= 1; k++) for (l = -1; l <= 1; l++)
+		if (k || l)
+			if (board[xadd(i, k)][yadd(j, l)]) count++;
+	return count;
+}
+
 //выведение поля
 void print(int board[][BOARD_HEIGHT]) {
 	int	i, j;
