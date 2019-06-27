@@ -114,5 +114,9 @@ int main() {
 		b = ifnull(nextgen);
 
         } while ((a != 0) && (b != 0));//Добавить условия выхода из цикла
+        system("cls");
+	print(nextgen);
+	if (b == 0) printf("Life has stoped, await for the next big bang");
+	if (a == 0) printf("Life has stabilized, nothing to see here anymore");
 	
 }
